@@ -18,6 +18,14 @@ def allowed_areas() -> list:
     return ["canal", "lake", "ocean", "pool", "pond", "river", "sea", "spring"]
 
 
+def allowed_beast_types() -> list:
+    """
+    This function returns list of the allowed beast types
+    :return: list of allowed beast types
+    """
+    return ["predators", "herbivores", "omnivores", "insectivores"]
+
+
 def add(container: Container, animal) -> None:
     """
     This function adds animal to container
@@ -69,6 +77,24 @@ def create_fish_class(name, areas):
     return Fish(name=name, area=successful_parsed_areas)
 
 
+def create_beast_class(name, types):
+    """
+    This function parses data and creates Fish class
+    :param name: str: beast name
+    :param types: str: beast type
+    :return: Beast class
+    """
+    successful_parsed_types = []
+    types = types.split("+")
+    for beast_type in types:
+        if type in allowed_areas():
+            successful_parsed_types.append(beast_type)
+    if len(successful_parsed_types) == 0:
+        raise ValueError
+
+    return Beast(name=name, beast_type=successful_parsed_types)
+
+
 def clear(container: Container) -> None:
     """
     This function clears container
@@ -111,6 +137,8 @@ def string_conversion(animal) -> str:
         return f"Type: bird.\t\tName: {animal.name}.\t  Is migratory: {animal.migratory}."
     elif type(animal) == Fish:
         return f"Type: fish.\t\tName: {animal.name}.\t  Area: {', '.join(animal.area)}."
+    elif type(animal) == Beast:
+        return f"Type: beast.\t\tName: {animal.name}.\t  Type: {', '.join(animal.area)}."
 
 
 def read_file(container: Container, file_in: str) -> None:
@@ -162,6 +190,8 @@ def parse_line_and_create_animal_class(line):
     elif description["type"] == "fish":
         animal = create_fish_class(description["name"], description["features"])
     # Raise exception if given unknown type of animal
+    elif description["type"] == "beast":
+        animal = create_beast_class(description["name"], description["features"])
     else:
         raise ValueError
 

@@ -24,6 +24,15 @@ class Fish:
 
 
 @dataclass
+class Beast:
+    """
+    This is class of the beast
+    """
+    name: str = "Not specified"
+    beast_type: list = field(default_factory=list)
+
+
+@dataclass
 class Container:
     """
     This is container class
