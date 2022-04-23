@@ -1,6 +1,7 @@
-Animal count: 5. Animals:
+Animal count: 6. Animals:
 1: Type: bird.		Name: stork.	  Is migratory: True.
 2: Type: bird.		Name: eagle.	  Is migratory: True.
 3: Type: bird.		Name: macaw.	  Is migratory: True.
 4: Type: fish.		Name: carp.	  Area: river, sea.
 5: Type: fish.		Name: shark.	  Area: ocean.
+6: Type: beast.		Name: bear.	  Type: predator, herbivores.
