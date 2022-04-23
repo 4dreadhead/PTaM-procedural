@@ -10,8 +10,7 @@ class Bird:
     """
     This is class of the birds
     """
-    name: str = "Not specified"
-    migratory: bool = "Not specified"
+    migratory: bool
 
 
 @dataclass
@@ -19,8 +18,7 @@ class Fish:
     """
     This is class of the fish
     """
-    name: str = "Not specified"
-    area: list = field(default_factory=list)
+    area: list
 
 
 @dataclass
@@ -28,8 +26,16 @@ class Beast:
     """
     This is class of the beast
     """
-    name: str = "Not specified"
-    beast_type: list = field(default_factory=list)
+    beast_type: list
+
+
+@dataclass
+class Animal:
+    """
+    This is general class for any animal
+    """
+    name: str
+    animal_class: dataclass
 
 
 @dataclass

@@ -56,7 +56,7 @@ def create_bird_class(name, migratory):
     else:
         raise ValueError
 
-    return Bird(name=name, migratory=migratory)
+    return Animal(name=name, animal_class=Bird(migratory=migratory))
 
 
 def create_fish_class(name, areas):
@@ -74,7 +74,7 @@ def create_fish_class(name, areas):
     if len(successful_parsed_areas) == 0:
         raise ValueError
 
-    return Fish(name=name, area=successful_parsed_areas)
+    return Animal(name=name, animal_class=Fish(area=successful_parsed_areas))
 
 
 def create_beast_class(name, types):
@@ -133,11 +133,11 @@ def string_conversion(animal) -> str:
     :param animal: Bird or Fish object to converse
     :return: conversed to string Animal object
     """
-    if type(animal) == Bird:
-        return f"Type: bird.\t\tName: {animal.name}.\t  Is migratory: {animal.migratory}."
-    elif type(animal) == Fish:
-        return f"Type: fish.\t\tName: {animal.name}.\t  Area: {', '.join(animal.area)}."
-    elif type(animal) == Beast:
+    if type(animal.animal_class) == Bird:
+        return f"Type: bird.\t\tName: {animal.name}.\t  Is migratory: {animal.animal_class.migratory}."
+    elif type(animal.animal_class) == Fish:
+        return f"Type: fish.\t\tName: {animal.name}.\t  Area: {', '.join(animal.animal_class.area)}."
+    elif type(animal.animal_class) == Beast:
         return f"Type: beast.\t\tName: {animal.name}.\t  Type: {', '.join(animal.area)}."
 
 
@@ -161,6 +161,9 @@ def read_file(container: Container, file_in: str) -> None:
                 except BufferError:
                     print(f"! Warning: Container is full. Read only {container.max_size} lines.")
                     break
+        # Sorting
+        sort_by_name_length(container)
+
     except FileNotFoundError:
         print("Incorrect command line: No such input file.")
         sys.exit()
@@ -196,6 +199,36 @@ def parse_line_and_create_animal_class(line):
         raise ValueError
 
     return animal
+
+
+def print_name_length_of_each_animal(container):
+    """
+    This function prints length of name of each animal
+    :param container: Container
+    :return: None
+    """
+    for index, animal in enumerate(container.data):
+        print(f"{index + 1}: name: {animal.name}, length: {len(animal.name)}")
+
+
+def sort_by_name_length(container):
+    """
+    This function sorts animals by length of name
+    :param container: Container
+    :return: None
+    """
+    if container.size == 0:
+        print("Empty container.")
+        return
+
+    print_name_length_of_each_animal(container)
+
+    for _ in range(container.size):
+        for i in range(container.size - 1):
+            if len(container.data[i].name) < len(container.data[i + 1].name):
+                container.data[i], container.data[i + 1] = container.data[i + 1], container.data[i]
+
+    print("Container sorted by name length.\n")
 
 
 def helping_info() -> None:
