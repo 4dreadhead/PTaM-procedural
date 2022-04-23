@@ -1,5 +1,5 @@
-bird Stork True
-bird Eagle False
-bird Macaw True
-fish Carp river+sea+kek
-fish Shark OcEaN
+bird Stork True 1
+bird Eagle False 20
+bird Macaw True 16
+fish Carp river+sea+kek 10
+fish Shark OcEaN 5

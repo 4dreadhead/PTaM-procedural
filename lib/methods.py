@@ -34,11 +34,12 @@ def add(container: Container, animal) -> None:
     container.size += 1
 
 
-def create_bird_class(name, migratory):
+def create_bird_class(name, migratory, age):
     """
     This function parses data and creates Bird class
     :param name: str: bird name
     :param migratory: str: is migratory
+    :param age: str: bird age
     :return: Bird class
     """
     if migratory == "true" or migratory == "false":
@@ -48,14 +49,15 @@ def create_bird_class(name, migratory):
     else:
         raise ValueError
 
-    return Animal(name=name, animal_class=Bird(migratory=migratory))
+    return Animal(name=name, age=age, animal_class=Bird(migratory=migratory))
 
 
-def create_fish_class(name, areas):
+def create_fish_class(name, areas, age):
     """
     This function parses data and creates Fish class
     :param name: str: fish name
     :param areas: str: fish area
+    :param age: str: fish age
     :return: Fish class
     """
     successful_parsed_areas = []
@@ -66,7 +68,7 @@ def create_fish_class(name, areas):
     if len(successful_parsed_areas) == 0:
         raise ValueError
 
-    return Animal(name=name, animal_class=Fish(area=successful_parsed_areas))
+    return Animal(name=name, age=age, animal_class=Fish(area=successful_parsed_areas))
 
 
 def clear(container: Container) -> None:
@@ -108,9 +110,11 @@ def string_conversion(animal) -> str:
     :return: conversed to string Animal object
     """
     if type(animal.animal_class) == Bird:
-        return f"Type: bird.\t\tName: {animal.name}.\t  Is migratory: {animal.animal_class.migratory}."
+        return f"Type: bird.\t\tName: {animal.name}.\tAge: {animal.age}. \t" +\
+               f"Is migratory: {animal.animal_class.migratory}."
     elif type(animal.animal_class) == Fish:
-        return f"Type: fish.\t\tName: {animal.name}.\t  Area: {', '.join(animal.animal_class.area)}."
+        return f"Type: fish.\t\tName: {animal.name}.\tAge: {animal.age}. \t" +\
+               f"Area: {', '.join(animal.animal_class.area)}."
 
 
 def read_file(container: Container, file_in: str) -> None:
@@ -147,20 +151,21 @@ def parse_line_and_create_animal_class(line):
     :return: animal object
     """
     line = line.replace("\n", "").split()
-    if len(line) != 3:
+    if len(line) != 4:
         raise ValueError
 
     description = {
         "type": line[0].lower(),
         "name": line[1].lower(),
-        "features": line[2].lower()
+        "features": line[2].lower(),
+        "age": int(line[3].lower())
     }
     # Parse data for Bird
     if description["type"] == "bird":
-        animal = create_bird_class(description["name"], description["features"])
+        animal = create_bird_class(description["name"], description["features"], description["age"])
     # Parse data for Fish
     elif description["type"] == "fish":
-        animal = create_fish_class(description["name"], description["features"])
+        animal = create_fish_class(description["name"], description["features"], description["age"])
     # Raise exception if given unknown type of animal
     else:
         raise ValueError
