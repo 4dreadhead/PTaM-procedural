@@ -35,6 +35,7 @@ class Animal:
     This is general class for any animal
     """
     name: str
+    age: int
     animal_class: dataclass
 
 
