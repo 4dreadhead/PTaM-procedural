@@ -1,0 +1,5 @@
+bird Stork True
+bird Eagle False
+bird Macaw True
+fish Carp river+sea+kek
+fish Shark OcEaN
