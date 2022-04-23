@@ -48,7 +48,7 @@ def create_bird_class(name, migratory):
     else:
         raise ValueError
 
-    return Bird(name=name, migratory=migratory)
+    return Animal(name=name, animal_class=Bird(migratory=migratory))
 
 
 def create_fish_class(name, areas):
@@ -66,7 +66,7 @@ def create_fish_class(name, areas):
     if len(successful_parsed_areas) == 0:
         raise ValueError
 
-    return Fish(name=name, area=successful_parsed_areas)
+    return Animal(name=name, animal_class=Fish(area=successful_parsed_areas))
 
 
 def clear(container: Container) -> None:
@@ -107,10 +107,10 @@ def string_conversion(animal) -> str:
     :param animal: Bird or Fish object to converse
     :return: conversed to string Animal object
     """
-    if type(animal) == Bird:
-        return f"Type: bird.\t\tName: {animal.name}.\t  Is migratory: {animal.migratory}."
-    elif type(animal) == Fish:
-        return f"Type: fish.\t\tName: {animal.name}.\t  Area: {', '.join(animal.area)}."
+    if type(animal.animal_class) == Bird:
+        return f"Type: bird.\t\tName: {animal.name}.\t  Is migratory: {animal.animal_class.migratory}."
+    elif type(animal.animal_class) == Fish:
+        return f"Type: fish.\t\tName: {animal.name}.\t  Area: {', '.join(animal.animal_class.area)}."
 
 
 def read_file(container: Container, file_in: str) -> None:
