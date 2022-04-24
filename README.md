@@ -19,4 +19,4 @@ This is program reads input data from input file and writes to output file in re
 - write parsed data to output file
 - clear container
 
-Data is the animals with name, age, and unique features for all kinds of animal.
+Data is the animals with name, age, and unique features for all kinds of animals.
