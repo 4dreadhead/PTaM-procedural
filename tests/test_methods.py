@@ -2,6 +2,8 @@ import unittest
 import random
 from lib.methods import *
 from lib.classes import *
+import os
+from app import ROOT_DIR
 
 
 class TestMethods(unittest.TestCase):
@@ -199,7 +201,7 @@ class TestMethods(unittest.TestCase):
 
     def test_read_file(self):
         """Test method 'read_file'"""
-        file_path = "./tmp/test_input.txt"
+        file_path = os.path.join(ROOT_DIR, 'tests', 'tmp', 'test_input.txt')
         container = create_container()
 
         beast = Animal(name="my_beast", age=10, animal_class=Beast(beast_type=["predator", "herbivores"]))
@@ -220,9 +222,9 @@ class TestMethods(unittest.TestCase):
 
     def test_write_file(self):
         """Test method 'write_file'"""
-        file_path_in = "./tmp/test_input.txt"
-        file_path_out = "./tmp/test_output.txt"
-        file_path_out_example = "./tmp/output_example.txt"
+        file_path_in = os.path.join(ROOT_DIR, 'tests', 'tmp', 'test_input.txt')
+        file_path_out = os.path.join(ROOT_DIR, 'tests', 'tmp', 'test_output.txt')
+        file_path_out_example = os.path.join(ROOT_DIR, 'tests', 'tmp', 'output_example.txt')
         container = create_container()
 
         read_file(container, file_path_in)

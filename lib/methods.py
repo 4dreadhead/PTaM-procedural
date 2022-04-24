@@ -7,6 +7,7 @@ def create_container() -> Container:
     This function creates animal container
     :return: animal container
     """
+    clear(Container())
     return Container()
 
 
