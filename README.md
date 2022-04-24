@@ -8,7 +8,7 @@
 python app.py tmp/file_in.txt tmp/file_out.txt
 ---
 ## Kind
-### Procedural
+Procedural
 ## Description
 This is program reads input data from input file and writes to output file in readable format by steps:
 - read input file
