@@ -1,0 +1,22 @@
+beast my_beast predator+herbivores 10
+fish my_fish river+sea 5
+bird my_bird true 3
+wrong_type name feature 10
+beast name wrong_feature 10
+beast name predator wrong_age
+beast name predator 10 wrong number of arguments
+beast name predator
+beast name
+beast
+fish name wrong_feature 10
+fish name river wrong_age
+fish name river 10 wrong number of arguments
+fish name river
+fish name
+fish
+bird name wrong_feature 10
+bird name true wrong_age
+bird name true 10 wrong number of arguments
+bird name true
+bird name
+bird

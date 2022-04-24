@@ -1,0 +1,4 @@
+Animal count: 3. Animals:
+1: Type: beast.		Name: my_beast.	Age: 10. 	Type: predator, herbivores.
+2: Type: fish.		Name: my_fish.	Age: 5. 	Area: river, sea.
+3: Type: bird.		Name: my_bird.	Age: 3. 	Is migratory: True.

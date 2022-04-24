@@ -57,7 +57,7 @@ def create_bird_class(name, migratory, age):
     else:
         raise ValueError
 
-    return Animal(name=name, age=age, animal_class=Bird(migratory=migratory))
+    return Animal(name=name, age=int(age), animal_class=Bird(migratory=migratory))
 
 
 def create_fish_class(name, areas, age):
@@ -76,7 +76,7 @@ def create_fish_class(name, areas, age):
     if len(successful_parsed_areas) == 0:
         raise ValueError
 
-    return Animal(name=name, age=age, animal_class=Fish(area=successful_parsed_areas))
+    return Animal(name=name, age=int(age), animal_class=Fish(area=successful_parsed_areas))
 
 
 def create_beast_class(name, types, age):
@@ -95,7 +95,7 @@ def create_beast_class(name, types, age):
     if len(successful_parsed_types) == 0:
         raise ValueError
 
-    return Animal(name=name, age=age, animal_class=Beast(beast_type=successful_parsed_types))
+    return Animal(name=name, age=int(age), animal_class=Beast(beast_type=successful_parsed_types))
 
 
 def clear(container: Container) -> None:
@@ -220,7 +220,7 @@ def print_name_length_of_each_animal(container):
 
 def sort_by_name_length(container):
     """
-    This function sorts animals by length of name
+    This function sorts animals by length of name in descending order
     :param container: Container
     :return: None
     """
