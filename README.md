@@ -5,7 +5,9 @@
 ### To run application
 - Install python3
 - Run file 'app.py' with path to input and output files, example:
-python app.py tmp/file_in.txt tmp/file_out.txt
+
+`python app.py tmp/file_in.txt tmp/file_out.txt`
+
 ---
 ## Kind
 ### Procedural
