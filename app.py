@@ -28,6 +28,7 @@ def run(args: list) -> None:
 
     # Running methods
     methods.read_file(container, file_in)
+    methods.check_communications(container)
     methods.write_file(container, file_out)
     methods.clear(container)
 

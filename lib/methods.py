@@ -51,7 +51,7 @@ def create_bird_class(name, migratory, age):
     :param age: str: bird age
     :return: Bird class
     """
-    if migratory == "true" or migratory == "false":
+    if migratory == "true":
         migratory = True
     elif migratory == "false":
         migratory = False
@@ -246,19 +246,149 @@ def helping_info() -> None:
     """
     print("----------------------------------------------------------------------------------------------------")
     print("Example of command line:")
-    print("app.py file_in.txt file_out.txt\n")
-    print("You need to fill input file with tmp of animals.")
+    print("python app.py file_in.txt file_out.txt\n")
+    print("You need to fill input file with description of animals.")
     print(f"Default max size of container: 128.\n")
-    print("Example of input file:")
-    print("bird Stork True")
-    print("bird Eagle false")
-    print("bird Macaw tRuE")
-    print("fish Carp river+sea+pool")
-    print("fish Shark ocean\n")
-    print("You can write lines in any case.\n")
-    print("Last parameter for the fish: is migratory: true or false.")
-    print("Last parameter for the fish: area. Write it split '+', if fish lives in different areas.")
-    print('Accepted area names: "canal", "lake", "ocean", "pool", "pond", "river", "sea", "spring".\n')
-    print("If you write other area, it will not be included to the list.")
-    print("If optional parameter of animal will be wrong or empty, line will not be included to the container.")
+    print("Example of input file in tmp/file_in.txt")
     print("----------------------------------------------------------------------------------------------------")
+
+
+# Multimethods area
+
+
+def check_communications(container):
+    """
+    Runs multimethods
+    :param container: container
+    :return None
+    """
+    print("-" * 75)
+    print("\nANIMALS COMMUNICATIONS\n")
+    print("-" * 75 + "\n")
+
+    for first_index, animal in enumerate(container.data):
+        for other_animal in [other for other in container.data if other != animal]:
+            print(f"{first_index + 1} -> {container.data.index(other_animal) + 1}: ", end="")
+            check_another_animal(animal, other_animal)
+            print()
+    print("-" * 75)
+
+
+def check_another_animal(first_animal, second_animal):
+    # Matching with Fish first
+    if first_animal.animal_class.__class__.__name__ == "Fish":
+
+        # Fish with Fish
+        if second_animal.animal_class.__class__.__name__ == "Fish":
+            coincided_areas = [
+                coincided_area for coincided_area in first_animal.animal_class.area if
+                coincided_area in second_animal.animal_class.area
+            ]
+            if coincided_areas:
+                print(
+                    f"a typical day between {first_animal.name} and {second_animal.name}: "
+                    f"'boules boules! boules boules boules, boules boules? boules boules boules...'"
+                )
+            else:
+                print(f"{first_animal.name} and {second_animal.name} are strangers")
+
+        # Fish with Beast
+        elif second_animal.animal_class.__class__.__name__ == "Beast":
+            if "predator" in second_animal.animal_class.beast_type:
+                if "river" in first_animal.animal_class.area or "lake" in first_animal.animal_class.area:
+                    print(f"{first_animal.name} lost friends thanks to the {second_animal.name}...")
+                else:
+                    print(
+                        f"overseas friends of {first_animal.name} tell scary stories about {second_animal.name}"
+                    )
+            else:
+                print(f"{first_animal.name} hardly knows who is the {second_animal.name}")
+
+        # Fish with Bird
+        elif second_animal.animal_class.__class__.__name__ == "Bird":
+            if second_animal.animal_class.migratory:
+                print(f"{first_animal.name} thinks that {second_animal.name} is the alien")
+            else:
+                print(f"{first_animal.name} thinks thad {second_animal.name} is the annoying neighbor")
+
+        # If no matches
+        else:
+            print(f"Given unknown type of animal: {type(second_animal)}")
+
+    # Matching with Bird first
+    elif first_animal.animal_class.__class__.__name__ == "Bird":
+
+        # Bird with Bird
+        if second_animal.animal_class.__class__.__name__ == "Bird":
+            if first_animal.animal_class.migratory and second_animal.animal_class.migratory:
+                print(f"{first_animal.name} and {second_animal.name} are on the same flight!")
+            elif first_animal.animal_class.migratory and not second_animal.animal_class.migratory:
+                print(f"{first_animal.name} can have a holiday romance with {second_animal.name}")
+            elif not first_animal.animal_class.migratory and second_animal.animal_class.migratory:
+                print(f"{first_animal.name} will miss for {second_animal.name} :(")
+            else:
+                print(f"{first_animal.name} and {second_animal.name} good neighbors! (or not so)")
+
+        # Bird with Beast
+        elif second_animal.animal_class.__class__.__name__ == "Beast":
+            if "predator" in second_animal.animal_class.beast_type:
+                print(f"{first_animal.name} needs to be careful with {second_animal.name}, ", end="")
+                if first_animal.animal_class.migratory:
+                    print("but not whole year")
+                else:
+                    print("it dangerous all year round")
+            else:
+                print(f"{second_animal.name} and {second_animal.name} can make friends!")
+
+        # Bird with Fish
+        elif second_animal.animal_class.__class__.__name__ == "Fish":
+            if first_animal.animal_class.migratory:
+                print(f"{first_animal.name} will see {second_animal.name} in next year")
+            else:
+                print(f"{first_animal.name} thinks that {second_animal.name} is a reflection of him")
+
+        # If no matches
+        else:
+            print(f"Given unknown type of animal: {type(second_animal)}")
+
+    # Matching with Beast first
+    elif first_animal.animal_class.__class__.__name__ == "Beast":
+
+        # Beast with Beast
+        if second_animal.animal_class.__class__.__name__ == "Beast":
+            coincided_types = [
+                coincided_type for coincided_type in first_animal.animal_class.beast_type if
+                coincided_type in second_animal.animal_class.beast_type
+            ]
+            if coincided_types:
+                print(f"{first_animal.name} has same types with {second_animal.name}: {', '.join(coincided_types)}")
+            else:
+                print(f"{first_animal.name} and {second_animal.name} are different")
+
+        # Beast with Bird
+        elif second_animal.animal_class.__class__.__name__ == "Bird":
+            if second_animal.animal_class.migratory and "predator" in first_animal.animal_class.beast_type:
+                print(f"{first_animal.name} could have eaten bird {second_animal.name}, ", end="")
+                print("but he doesn't have much time for that, so this bird flies away soon.")
+            elif not second_animal.animal_class.migratory and "predator" in first_animal.animal_class.beast_type:
+                print(f"{first_animal.name} could have eaten {second_animal.name} anytime if had gotten it")
+            else:
+                print(f"{first_animal.name} not interested with {second_animal.name}")
+
+        # Beast with Fish
+        elif second_animal.animal_class.__class__.__name__ == "Fish":
+            if "predator" in first_animal.animal_class.beast_type:
+                if "river" in second_animal.animal_class.area or "lake" in second_animal.animal_class.area:
+                    print(f"{first_animal.name} wouldn't mind to eat {second_animal.name}")
+                else:
+                    print(f"{first_animal.name} has no idea how delicious {second_animal.name} is")
+            else:
+                print(f"{first_animal.name} not interested with {second_animal.name}")
+
+        # If no matches
+        else:
+            print(f"Given unknown type of animal: {type(second_animal)}")
+
+    # If no matches with first animal
+    else:
+        print(f"Given unknown type of animal: {type(first_animal)}")

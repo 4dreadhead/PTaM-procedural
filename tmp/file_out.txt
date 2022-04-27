@@ -1,6 +1,6 @@
 Animal count: 6. Animals:
 1: Type: bird.		Name: stork.	Age: 1. 	Is migratory: True.
-2: Type: bird.		Name: eagle.	Age: 20. 	Is migratory: True.
+2: Type: bird.		Name: eagle.	Age: 20. 	Is migratory: False.
 3: Type: bird.		Name: macaw.	Age: 16. 	Is migratory: True.
 4: Type: fish.		Name: shark.	Age: 5. 	Area: ocean.
 5: Type: fish.		Name: carp.	Age: 10. 	Area: river, sea.
