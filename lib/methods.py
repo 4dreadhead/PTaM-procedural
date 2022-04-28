@@ -101,6 +101,19 @@ def write_file(container: Container, file_out: str) -> None:
             print(f"{i + 1}: {animal}")
 
 
+def filter_data(container, animal_class):
+    return [animal for animal in container.data if type(animal.animal_class) is animal_class]
+
+
+def print_filtered_data(container):
+    for animal_class in [Bird, Fish]:
+        print(f"Filter by {animal_class.__name__}:")
+        filtered_data = filter_data(container, animal_class)
+
+        for animal in filtered_data:
+            print(string_conversion(animal))
+
+
 def string_conversion(animal) -> str:
     """
     This function converses Animal object to string

@@ -3,3 +3,5 @@ bird Eagle False
 bird Macaw True
 fish Carp river+sea+kek
 fish Shark OcEaN
+fish salmon river
+bird pigeon true
