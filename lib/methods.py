@@ -146,7 +146,7 @@ def print_filtered_data(container):
     :param container: container
     :return: None
     """
-    for animal_class in [Bird, Fish]:
+    for animal_class in [Bird, Fish, Beast]:
         print(f"Filter by {animal_class.__name__}:")
         filtered_data = filter_data(container, animal_class)
 
