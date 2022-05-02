@@ -102,10 +102,21 @@ def write_file(container: Container, file_out: str) -> None:
 
 
 def filter_data(container, animal_class):
+    """
+    Filter animals by given class
+    :param container: container
+    :param animal_class: class of the animal
+    :return: list of animals filtered by given class
+    """
     return [animal for animal in container.data if type(animal.animal_class) is animal_class]
 
 
 def print_filtered_data(container):
+    """
+    This method prints data filtered by animal class
+    :param container: container
+    :return: None
+    """
     for animal_class in [Bird, Fish]:
         print(f"Filter by {animal_class.__name__}:")
         filtered_data = filter_data(container, animal_class)
