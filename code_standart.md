@@ -93,10 +93,10 @@ my_second_long_string = "blablablablablablablablablablablablablabla" \
 common_fields = "something"
 
 
-def create_class_with_description(description)
+def create_class_with_description(description):
     # ...
 ```
-- имя констант называю в верхнем регистре:
+- имя констант называю в верхнем регистре через нижнее подчеркивание:
 ```python
 ALLOWED_AREAS = ["canal", "lake", "ocean", "pool", "pond", "river", "sea", "spring"]
 ```
@@ -155,7 +155,7 @@ ALLOWED_AREAS = ["canal", "lake", "ocean", "pool", "pond", "river", "sea", "spri
 ```python
 summ = a + b
 
-mul = (a+b) * (c+d)
+summ_and_mul = (a+b) * (c+d)
 
-div_summ = a/b + c/d
+div_and_summ = a/b + c/d
 ```
